@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,4 +46,22 @@ public class WordPackController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return new ResponseEntity<>(wordPackService.getMyWordPacks(user.getId()), HttpStatus.OK);
     }
+
+    @GetMapping("public")
+    public ResponseEntity<List<WordPackDetailsResponse>> getPublicWordPacks() {
+        return new ResponseEntity<>(wordPackService.getPublicWordPacks(), HttpStatus.OK);
+    }
+
+    @PostMapping("addToLibrary/{wordPackId}")
+    public ResponseEntity<?> addToLibrary(@PathVariable Long wordPackId) {
+        wordPackService.addToLibrary(wordPackId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("update/{wordPackId}")
+    public ResponseEntity<?> updateWordPack(@Valid @RequestBody WordPackRequestDto wordPack,
+            @PathVariable Long wordPackId) {
+        return new ResponseEntity<>(wordPackService.updateWordPack(wordPack, wordPackId), HttpStatus.OK);
+    }
+
 }

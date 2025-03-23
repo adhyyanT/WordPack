@@ -15,4 +15,7 @@ public interface IWordPackRepository extends JpaRepository<WordPack, Long> {
 
     @Query("SELECT new com.droid232.WordPack.dto.WordPackDetailsResponse(wp.wordPackId, wp.title, wp.description, wp.isPublic) FROM WordPack wp WHERE wp.user.id = :userId")
     List<WordPackDetailsResponse> findByUserId(@Param("userId") Long id);
+
+    @Query("SELECT new com.droid232.WordPack.dto.WordPackDetailsResponse(wp.wordPackId, wp.title, wp.description, wp.isPublic) FROM WordPack wp WHERE wp.isPublic = true")
+    List<WordPackDetailsResponse> findByIsPublic();
 }
