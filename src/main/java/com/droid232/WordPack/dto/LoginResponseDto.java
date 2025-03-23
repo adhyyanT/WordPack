@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class LoginResponseDto {
-    private Integer id;
+    private Long id;
     private String email;
     private String fullName;
     private LocalDateTime createdAt;

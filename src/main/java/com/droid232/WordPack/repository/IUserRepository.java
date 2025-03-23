@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.droid232.WordPack.entity.User;
 
 @Repository
-public interface IUserRepository extends JpaRepository<User, Integer> {
+public interface IUserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email); // Use 'email' if that is the correct field for login
 }

@@ -26,7 +26,7 @@ public class RegisterUserDto {
     @Size(min = 2, max = 14, message = "The length of password must be between 2 and 14 characters.")
     private String password;
 
-    @NotEmpty(message = "The full name is required.")
+    @NotEmpty(message = "Full name is required.")
     @Size(min = 2, max = 100, message = "The length of full name must be between 2 and 100 characters.")
     private String fullName;
 

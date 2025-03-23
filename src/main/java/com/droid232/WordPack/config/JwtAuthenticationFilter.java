@@ -3,8 +3,10 @@ package com.droid232.WordPack.config;
 import java.io.IOException;
 
 import org.springframework.lang.NonNull;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -61,12 +63,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
 
             }
-
             filterChain.doFilter(request, response);
+
         } catch (Exception exception) {
-            System.out.println(exception.toString());
+
             SecurityContextHolder.clearContext();
-            handlerExceptionResolver.resolveException(request, response, null, exception);
+            if (exception instanceof AuthenticationException) {
+                this.jwtAuthenticationEntryPoint.commence(
+                        request, response, (AuthenticationException) exception);
+            } else {
+                this.jwtAuthenticationEntryPoint.commence(
+                        request, response, new BadCredentialsException(exception.getMessage()));
+            }
         }
     }
 }
