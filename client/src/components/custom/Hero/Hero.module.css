@@ -1,0 +1,41 @@
+.image {
+  border-radius: 10px;
+}
+.button {
+  border-radius: 50px;
+}
+
+.animatedText {
+  animation: gradient-shift 5s ease-in-out infinite;
+  background-image: linear-gradient(to right, #c084fc, #f472b6);
+  background-size: 200%;
+}
+
+.boxedText {
+  background-color: var(--muted-accent);
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 15px;
+  margin-inline: auto;
+  color: var(--icon);
+  border: 1px solid var(--icon);
+}
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .animatedText {
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-position: 200%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
