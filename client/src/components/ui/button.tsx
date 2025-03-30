@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import styles from "./css/button.module.css";
 
 import { cn } from "@/lib/utils";
 
@@ -52,7 +53,8 @@ function Button({
       data-slot="button"
       className={cn(
         buttonVariants({ variant, size, className }),
-        "hover:cursor-pointer"
+        "hover:cursor-pointer",
+        styles.button
       )}
       {...props}
     />

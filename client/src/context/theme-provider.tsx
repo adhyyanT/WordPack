@@ -35,7 +35,6 @@ export function ThemeProvider({
     if (preferredTheme) {
       setTheme(preferredTheme as Theme);
     }
-    console.log("gere", preferredTheme);
   }, []);
 
   useEffect(() => {

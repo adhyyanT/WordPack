@@ -1,4 +1,6 @@
+import { AppSidebar } from "@/components/custom/AppSidebar/app-sidebar";
 import { Navbar } from "@/components/shared/navbar/Navbar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/context/theme-provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -29,7 +31,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-dvh">{children}</div>
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="w-full">
+            <ThemeProvider defaultTheme="system" storageKey="word-pack-theme">
+              <Navbar />
+            </ThemeProvider>
+            {children}
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );

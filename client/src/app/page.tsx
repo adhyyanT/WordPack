@@ -6,9 +6,6 @@ import { ThemeProvider } from "@/context/theme-provider";
 export default function Landing() {
   return (
     <>
-      <ThemeProvider defaultTheme="system" storageKey="word-pack-theme">
-        <Navbar />
-      </ThemeProvider>
       <Banner />
       <Hero />
     </>

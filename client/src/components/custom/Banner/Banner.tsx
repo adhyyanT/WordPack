@@ -29,7 +29,7 @@ export default function Banner() {
     <div
       className={cn(
         styles.bannerContainer,
-        "py-2 flex justify-center alternateBackground"
+        "py-1 flex justify-center alternateBackground"
       )}
     >
       {stats.map((stat, index) => (

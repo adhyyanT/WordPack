@@ -1,12 +1,18 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import styles from "./Hero.module.css";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="text-center pt-12 md:pt-16 flex flex-col container">
+    <section
+      className={cn(
+        "text-center pt-12 md:pt-16 flex flex-col container",
+        styles.headerContainer
+      )}
+    >
       <div className={cn("mb-10", styles.boxedText)}>
         ⭐ Create your word packs in minutes
       </div>
@@ -24,11 +30,14 @@ export default function Hero() {
         ace your competitive exams
       </div>
       <div className="flex flex-col md:flex-row gap-4 justify-center mb-20">
-        <Button className={cn(styles.button, "px-9 py-6 accentBackground")}>
-          <div className="flex gap-3 items-center">
+        <Link
+          href="/home"
+          className={cn(styles.button, "px-6 py-3 accentBackground")}
+        >
+          <div className="flex gap-3 items-center justify-center">
             Create Your WordPack <ArrowRight />
           </div>
-        </Button>
+        </Link>
         <Button variant={"outline"} className={cn(styles.button, "px-9 py-6")}>
           View Portfolio
         </Button>
